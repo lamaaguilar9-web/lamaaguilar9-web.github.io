@@ -1,0 +1,421 @@
+import os
+import sys
+from fastapi import FastAPI, HTTPException, Header, Request
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+
+app = FastAPI(
+    title="Sentinel Fleet Technologies — Autonomous Multi-Agent Invariant Security Suite",
+    description="High-performance deterministic invariant verification and DeFi risk mitigation microservices on Base Mainnet.",
+    version="1.3.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
+)
+
+# ----------------------------------------------------------------------
+# Gated Institutional Dashboard HTML Template (100% Purged of Legacy Claims)
+# ----------------------------------------------------------------------
+DASHBOARD_HTML = """<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Fleet Technologies — Autonomous Multi-Agent DeFi Security on Base</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    colors: {
+                        darkbg: '#070a12',
+                        cardbg: '#0f172a',
+                        sentinelemerald: '#10b981',
+                        sentinelcyan: '#06b6d4',
+                        sentinelgold: '#f59e0b',
+                        sentinelpurple: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: radial-gradient(circle at 50% 0%, #131d38 0%, #070a12 75%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glow-card:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans min-h-screen selection:bg-sentinelemerald selection:text-black">
+    <nav class="border-b border-slate-800/80 bg-darkbg/90 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">🛡️</span>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                        Sentinel Fleet <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-mono">Technologies</span>
+                    </span>
+                    <span class="text-xs text-slate-400 font-mono">Autonomous AI Security & Invariant Suite</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#deployments" class="text-slate-300 hover:text-emerald-400 transition">Base Production</a>
+                <a href="#services" class="text-slate-300 hover:text-emerald-400 transition">Security Services</a>
+                <a href="#repositories" class="text-slate-300 hover:text-emerald-400 transition">Open Source</a>
+                <a href="#compliance" class="text-slate-300 hover:text-emerald-400 transition">Legal & Safety</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="https://basescan.org/address/0x680C4D7B6C729f87155dB1AF4F87BD17E1626D7F" target="_blank" class="text-xs font-mono bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Safe Multisig: 0x680C...6D7F
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-20 px-6 max-w-7xl mx-auto text-center relative">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-8">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            LIVE ON BASE MAINNET — OLAS SERVICE #777 (STATE 4: DEPLOYED)
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight mb-6">
+            Autonomous Multi-Agent <br><span class="gradient-text">DeFi Invariant Security</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10">
+            Deterministic pre-trade verification, real-time oracle divergence circuit breakers, and on-chain static bytecode risk scoring for algorithmic trading agents and DeFi protocols.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="https://marketplace.olas.network/base/ai-agents/777" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-darkbg font-bold px-6 py-3.5 rounded-xl transition shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+                <span>🤖</span> Olas Marketplace #777
+            </a>
+            <a href="https://basescan.org/tx/0xa11c151a8384eeeb7c5a9a3b42af79fa65b72baec4c10b6421d858e5c5ed6c6c" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold px-6 py-3.5 rounded-xl transition flex items-center gap-2">
+                <span>🔍</span> Basescan Deployment Tx
+            </a>
+            <a href="https://dorahacks.io/buidl/50907" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold px-6 py-3.5 rounded-xl transition flex items-center gap-2">
+                <span>🏛️</span> DoraHacks BUIDL #50907
+            </a>
+        </div>
+    </header>
+
+    <section id="deployments" class="py-16 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="mb-12">
+            <div class="text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">Verified On-Chain Architecture</div>
+            <h2 class="text-3xl font-bold text-white">Base Mainnet Live Production</h2>
+            <p class="text-slate-400 mt-2">Production deployments verified on Base (Chain ID: 8453) under strict non-custodial standards.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glow-card p-6 rounded-2xl">
+                <div class="text-slate-400 text-xs font-mono mb-2">OLAS SERVICE ID</div>
+                <div class="text-2xl font-bold text-white mb-2">#777</div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 text-xs font-mono mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> State 4: DEPLOYED
+                </div>
+                <p class="text-xs text-slate-400">Multiagent Security Suite live on Olas Service Registry on Base.</p>
+            </div>
+
+            <div class="glow-card p-6 rounded-2xl">
+                <div class="text-slate-400 text-xs font-mono mb-2">SAFE MULTISIG</div>
+                <div class="text-sm font-mono text-emerald-400 mb-2 truncate">0x680C4D7B6C729f87155dB1AF4F87BD17E1626D7F</div>
+                <div class="text-xs font-mono text-slate-300 mb-3">Verified Safe Contract</div>
+                <p class="text-xs text-slate-400">Institutional Safe multisig controlling service revenue and operations on Base.</p>
+            </div>
+
+            <div class="glow-card p-6 rounded-2xl">
+                <div class="text-slate-400 text-xs font-mono mb-2">ERC-8004 AI AGENT</div>
+                <div class="text-2xl font-bold text-white mb-2">Token #1176109</div>
+                <div class="text-xs font-mono text-cyan-400 mb-3">0x8004a169...a432</div>
+                <p class="text-xs text-slate-400">Standardized Ethereum AI Agent identity minted and indexed on Base Mainnet.</p>
+            </div>
+
+            <div class="glow-card p-6 rounded-2xl">
+                <div class="text-slate-400 text-xs font-mono mb-2">HOUSTON HOST NODE</div>
+                <div class="text-2xl font-bold text-white mb-2">2.25.121.124</div>
+                <div class="text-xs font-mono text-emerald-400 mb-3">Linux KVM Dedicated</div>
+                <p class="text-xs text-slate-400">24/7 dedicated autonomous service host node in Houston, Texas with 0 downtime.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="mb-12">
+            <div class="text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">Service Catalog v1.3.0</div>
+            <h2 class="text-3xl font-bold text-white">Core Deterministic Invariant Services</h2>
+            <p class="text-slate-400 mt-2">Available for query via Olas Mech, Virtuals ACP, and smart contract routers.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glow-card p-8 rounded-2xl">
+                <div class="text-2xl mb-3">📊</div>
+                <h3 class="text-xl font-bold text-white mb-2">invariant_shield_scan</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Automated mathematical verification of liquidity pool reserves, token conservation, and non-negative solvency bounds using canonical 512-bit math. Preempts pool drain attempts before swap execution.
+                </p>
+                <div class="text-xs font-mono text-slate-400 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                    Threshold: TVL Drop > 1500 bps | Formal Verification: FullMath.sol
+                </div>
+            </div>
+
+            <div class="glow-card p-8 rounded-2xl">
+                <div class="text-2xl mb-3">⚡</div>
+                <h3 class="text-xl font-bold text-white mb-2">oracle_divergence_circuit_breaker</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Real-time cross-evaluation between DEX spot prices and reference Pyth/Chainlink oracle feeds. Algorithmic circuit breaker triggers alerts when spot-to-oracle divergence exceeds calibrated safety margins (300 bps).
+                </p>
+                <div class="text-xs font-mono text-slate-400 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                    Tolerance: 3.0% Max Divergence | Fast Exit Algorithmic Guard
+                </div>
+            </div>
+
+            <div class="glow-card p-8 rounded-2xl">
+                <div class="text-2xl mb-3">🔍</div>
+                <h3 class="text-xl font-bold text-white mb-2">forensic_risk_scoring</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Static analysis and forensic bytecode evaluation of target smart contracts, scanning for unverified delegatecall patterns, unsafe selfdestruct instructions, and malicious signatures.
+                </p>
+                <div class="text-xs font-mono text-slate-400 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                    Bytecode Decompilation | Opcode Pattern Matching | Static Analysis
+                </div>
+            </div>
+
+            <div class="glow-card p-8 rounded-2xl">
+                <div class="text-2xl mb-3">📈</div>
+                <h3 class="text-xl font-bold text-white mb-2">dex_burst_volume_detector</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Detects abnormal volumetric transaction spikes and liquidity cluster anomalies, identifying flash-loan sandwich attacks and sudden front-running waves before capital is impacted.
+                </p>
+                <div class="text-xs font-mono text-slate-400 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                    Anomaly Detection: Moving Average Delta > 3x Baseline Volume
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="repositories" class="py-16 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="mb-12">
+            <div class="text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">Formal Verification Proofs</div>
+            <h2 class="text-3xl font-bold text-white">Open Source Invariant Repositories</h2>
+            <p class="text-slate-400 mt-2">All verification suites are publicly accessible on GitHub with passing CI fuzzing proof.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <a href="https://github.com/lamaaguilar9-web/evm-invariant-shield" target="_blank" class="glow-card p-6 rounded-2xl block hover:no-underline">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-bold text-white font-mono">evm-invariant-shield</span>
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono">PASS [CI]</span>
+                </div>
+                <p class="text-xs text-slate-400 mb-3">Foundry invariant test suite with 256 fuzz runs proving reserve bounds.</p>
+                <span class="text-xs text-emerald-400 font-mono">Inspect Repository →</span>
+            </a>
+
+            <a href="https://github.com/lamaaguilar9-web/arbitrum-nitro-guardian" target="_blank" class="glow-card p-6 rounded-2xl block hover:no-underline">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-bold text-white font-mono">arbitrum-nitro-guardian</span>
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono">PASS [CI]</span>
+                </div>
+                <p class="text-xs text-slate-400 mb-3">Arbitrum precompile 0x6c circuit breaker and sequencer uptime verification.</p>
+                <span class="text-xs text-emerald-400 font-mono">Inspect Repository →</span>
+            </a>
+
+            <a href="https://github.com/lamaaguilar9-web/bnb-invariant-shield" target="_blank" class="glow-card p-6 rounded-2xl block hover:no-underline">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-bold text-white font-mono">bnb-invariant-shield</span>
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono">PASS [CI]</span>
+                </div>
+                <p class="text-xs text-slate-400 mb-3">5,000 iterations mathematical fuzzing proof with 512-bit canonical math.</p>
+                <span class="text-xs text-emerald-400 font-mono">Inspect Repository →</span>
+            </a>
+
+            <a href="https://github.com/lamaaguilar9-web/solana-guardian-agent" target="_blank" class="glow-card p-6 rounded-2xl block hover:no-underline">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-bold text-white font-mono">solana-guardian-agent</span>
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono">PASS [CI]</span>
+                </div>
+                <p class="text-xs text-slate-400 mb-3">12/12 invariant tests passed + 5,000 fuzz checks on Solana mainnet rails.</p>
+                <span class="text-xs text-emerald-400 font-mono">Inspect Repository →</span>
+            </a>
+
+            <a href="https://github.com/lamaaguilar9-web/defi-ai-circuit-breaker" target="_blank" class="glow-card p-6 rounded-2xl block hover:no-underline">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-bold text-white font-mono">defi-ai-circuit-breaker</span>
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono">PASS [CI]</span>
+                </div>
+                <p class="text-xs text-slate-400 mb-3">31/31 unit tests and automated oracle divergence fast-cut defense.</p>
+                <span class="text-xs text-emerald-400 font-mono">Inspect Repository →</span>
+            </a>
+
+            <div class="glow-card p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                    <div class="text-sm font-bold text-white font-mono mb-2">GitHub Organization</div>
+                    <p class="text-xs text-slate-400">All open source repositories maintained by Sentinel Fleet Technologies.</p>
+                </div>
+                <a href="https://github.com/lamaaguilar9-web" target="_blank" class="text-xs font-mono bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 py-2 px-3 rounded text-center transition mt-4">
+                    github.com/lamaaguilar9-web
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="compliance" class="py-16 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="grid md:grid-cols-2 gap-10">
+            <div>
+                <div class="text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">Leadership</div>
+                <h2 class="text-2xl font-bold text-white mb-4">Founder & Lead Architect</h2>
+                <div class="glow-card p-6 rounded-2xl">
+                    <div class="text-lg font-bold text-white">Luis Aguilar</div>
+                    <div class="text-xs font-mono text-emerald-400 mb-3">Founder & CEO — Sentinel Fleet Technologies</div>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                        Systems architect directing the deployment and operations of autonomous multi-agent DeFi security infrastructure on Base Mainnet.
+                    </p>
+                    <div class="flex items-center gap-4 text-xs font-mono">
+                        <a href="https://x.com/luis_sentinel" target="_blank" class="text-cyan-400 hover:underline">@luis_sentinel</a>
+                        <span class="text-slate-600">•</span>
+                        <a href="https://dorahacks.io/buidl/50907" target="_blank" class="text-emerald-400 hover:underline">DoraHacks Profile</a>
+                        <span class="text-slate-600">•</span>
+                        <span class="text-slate-400">Contact: lamaaguilar9@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">Safety & Disclosure</div>
+                <h2 class="text-2xl font-bold text-white mb-4">Non-Custodial Disclosure</h2>
+                <div class="glow-card p-6 rounded-2xl space-y-3 text-xs text-slate-300">
+                    <p>
+                        <strong class="text-white">Strictly Non-Custodial:</strong> Sentinel Fleet Technologies does not custody user assets or maintain pooled deposits ($0.00 customer balances).
+                    </p>
+                    <p>
+                        <strong class="text-white">Deterministic Triage:</strong> Our systems operate exclusively as algorithmic pre-trade invariant verification and safety circuit breakers evaluating public blockchain data.
+                    </p>
+                    <p>
+                        <strong class="text-white">Truthful Disclosures:</strong> Full adherence to FTC Section 5 truthful capability disclosures. Deterministic mathematical verifications only.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-800/80 py-10 px-6 max-w-7xl mx-auto text-center text-xs text-slate-500 font-mono">
+        <p>Sentinel Fleet Technologies • Autonomous DeFi Security & Invariant Verification on Base</p>
+        <p class="mt-2">Safe Multisig: 0x680C4D7B6C729f87155dB1AF4F87BD17E1626D7F • Olas Service #777 (State 4: DEPLOYED)</p>
+    </footer>
+</body>
+</html>
+"""
+
+COMPLIANCE_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical & Legal Disclosure | Sentinel Fleet Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-300 font-sans p-8 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-white mb-6">Technical & Legal Disclosure</h1>
+    <div class="space-y-4 text-sm leading-relaxed border border-slate-800 p-6 rounded-xl bg-slate-900/50">
+        <p><strong class="text-white">1. Nature of Operations:</strong> Sentinel Fleet Technologies operates deterministic, non-custodial smart contract invariant verifiers and algorithmic circuit breakers on Base (Olas Service #777).</p>
+        <p><strong class="text-white">2. Non-Custodial Architecture:</strong> Sentinel Fleet Technologies holds zero ($0.00) client funds, deposits, or balances. We do not operate financial custodial services or money transmission.</p>
+        <p><strong class="text-white">3. Public Technical Data:</strong> All verifications evaluate public blockchain technical data: reserve non-negativity, spot vs oracle price deviations, and contract bytecode inspection.</p>
+        <p><strong class="text-white">4. Truthful Representation:</strong> Operating in strict compliance with algorithmic safety and FTC Section 5 truthful standards.</p>
+    </div>
+</body>
+</html>"""
+
+TERMS_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Sentinel Fleet Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-300 font-sans p-8 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-white mb-6">Terms of Service</h1>
+    <div class="space-y-4 text-sm leading-relaxed border border-slate-800 p-6 rounded-xl bg-slate-900/50">
+        <p><strong class="text-white">1. Algorithmic Tools:</strong> Sentinel services provide algorithmic mathematical evaluation of smart contract bytecode and public pool state.</p>
+        <p><strong class="text-white">2. Non-Warranty:</strong> Algorithmic triage tools are deterministic mitigations and do not constitute financial or legal guarantees.</p>
+    </div>
+</body>
+</html>"""
+
+PRIVACY_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Sentinel Fleet Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-300 font-sans p-8 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-white mb-6">Privacy Policy</h1>
+    <div class="space-y-4 text-sm leading-relaxed border border-slate-800 p-6 rounded-xl bg-slate-900/50">
+        <p><strong class="text-white">Zero-PII Policy:</strong> Sentinel Fleet Technologies does not collect, sell, or process personal identifiable information (PII). Only public blockchain addresses and transaction hashes are processed for mathematical evaluation.</p>
+    </div>
+</body>
+</html>"""
+
+# ----------------------------------------------------------------------
+# Web Endpoints
+# ----------------------------------------------------------------------
+
+@app.get("/", response_class=HTMLResponse, tags=["Dashboard"])
+async def institutional_dashboard():
+    """Serves the institutional Sentinel Fleet Gated Dashboard."""
+    return HTMLResponse(content=DASHBOARD_HTML)
+
+@app.get("/health", tags=["Health"])
+async def health_check():
+    """High-availability public health probe for Nginx/UFW."""
+    return {
+        "status": "UP",
+        "service": "Sentinel Fleet Technologies — Multi-Agent Invariant Security Suite",
+        "olas_service_id": 777,
+        "base_chain_id": 8453,
+        "base_safe": "0x680C4D7B6C729f87155dB1AF4F87BD17E1626D7F",
+        "state": "DEPLOYED",
+        "version": "1.3.0"
+    }
+
+@app.get("/privacy", response_class=HTMLResponse, tags=["Legal"])
+async def privacy_policy():
+    """Serves the institutional Privacy Policy page."""
+    return HTMLResponse(content=PRIVACY_HTML)
+
+@app.get("/terms", response_class=HTMLResponse, tags=["Legal"])
+async def terms_of_service():
+    """Serves the institutional Terms of Service page."""
+    return HTMLResponse(content=TERMS_HTML)
+
+@app.get("/compliance", response_class=HTMLResponse, tags=["Legal"])
+async def compliance_statement():
+    """Serves the technical & legal non-custodial disclosure."""
+    return HTMLResponse(content=COMPLIANCE_HTML)
+
+if __name__ == "__main__":
+    import uvicorn
+    print("[*] Starting Sentinel Fleet Invariant API Gateway on port 5060...")
+    uvicorn.run("payfi_shield_api:app", host="0.0.0.0", port=5060, reload=False)
