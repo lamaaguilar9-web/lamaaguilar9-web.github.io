@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ansinfo.ai/schemas/v1/agent.json",
+  "name": "Sentinel Fleet Invariant Shield",
+  "description": "Autonomous DeFi Security & Invariant Verification Agent Suite",
+  "version": "1.3.0",
+  "domain": "sentinelfleet.tech",
+  "ans": {
+    "protocol": "ans1",
+    "name": "sentinelfleet.tech",
+    "record": "_ans.sentinelfleet.tech"
+  },
+  "identity": {
+    "erc8004": {
+      "chain_id": 8453,
+      "token_id": "1176109",
+      "contract": "0x8004a169fb4a3325136eb29fa0ceb6d2e539a432"
+    },
+    "olas": {
+      "chain_id": 8453,
+      "service_id": 777,
+      "state": "DEPLOYED",
+      "multisig_safe": "0x680C4D7B6C729f87155dB1AF4F87BD17E1626D7F"
+    },
+    "operator_wallet": "0xF8698CAE71B480E9e5D4ACc9aFbCFac846fEF314"
+  },
+  "capabilities": [
+    "invariant_shield_scan",
+    "oracle_divergence_circuit_breaker",
+    "forensic_risk_scoring",
+    "dex_burst_volume_detector"
+  ],
+  "endpoints": {
+    "portal": "https://sentinelfleet.tech",
+    "manifest": "https://sentinelfleet.tech/.well-known/agent.json"
+  },
+  "compliance": {
+    "standard": "Linux Foundation ANS v1.0",
+    "framework": "Non-custodial Autonomous Verification"
+  }
+}
